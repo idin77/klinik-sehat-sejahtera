@@ -1,0 +1,6 @@
+{
+  "name": "Klinik Sehat Sejahtera",
+  "description": "Website klinik kesehatan modern premium dengan layanan buat janji online, artikel kesehatan, dan informasi layanan kesehatan terpercaya.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
