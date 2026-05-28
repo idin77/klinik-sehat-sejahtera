@@ -11,6 +11,13 @@ import MedicalIcon from './MedicalIcon';
 
 export default function ArtikelKesehatan() {
   const [activeArticle, setActiveArticle] = useState<Article | null>(null);
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const filteredArticles = ARTICLES.filter(
+    (art) =>
+      art.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      art.category.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
     <section id="informasi-artikel" className="py-20 bg-slate-50 border-t border-slate-105">
@@ -29,15 +36,20 @@ export default function ArtikelKesehatan() {
               Rangkuman informasi klinis, tips pola hidup sehat, gizi seimbang, dan artikel terkini yang dikurasi langsung oleh tim dokter spesialis Klinik Sehat Sejahtera.
             </p>
           </div>
-          <button className="text-teal-650 hover:text-teal-800 font-bold text-sm flex items-center space-x-1 whitespace-nowrap group">
-            <span>Lihat Semua Artikel</span>
-            <MedicalIcon name="ArrowRight" size={16} className="group-hover:translate-x-1 transition-transform" />
-          </button>
+          <div className="flex items-center gap-2">
+            <input
+              type="text"
+              placeholder="Cari artikel atau kategori..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="px-4 py-2 rounded-xl border border-slate-200 text-sm focus:border-teal-500 focus:outline-hidden"
+            />
+          </div>
         </div>
 
         {/* Articles List Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {ARTICLES.map((art) => (
+          {filteredArticles.map((art) => (
             <div
               key={art.id}
               className="bg-white rounded-3xl overflow-hidden border border-slate-100 hover:border-teal-200 hover:shadow-xl hover:shadow-teal-650/5 transition-all flex flex-col group h-full justify-between"
